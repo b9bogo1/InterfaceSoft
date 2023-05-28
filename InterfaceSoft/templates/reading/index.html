@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div id="dashboard" class="my-5 py-4">
+  <div class="row">
+    <div class="col-md-4">
+        <div class="py-1 display-6">Dashboard</div>
+      <div class="my-3 fs-5">Request for reading in PDF Format</div>
+      <form method="post">
+        <div class="form-outline form-white mb-4">
+          <input name="email" type="email" id="email" class="form-control" required/>
+          <label class="form-label" for="email">Email address</label>
+        </div>
+        <div class="row mb-4">
+          <div class="col">
+            <div class="form-outline form-white">
+              <input name="fromdate" type="date" id="fromdate" class="form-control" />
+              <label class="form-label" for="fromdate">From</label>
+            </div>
+          </div>
+          <div class="col">
+            <div class="form-outline form-white">
+              <input name="todate" type="date" id="todate" class="form-control" />
+              <label class="form-label" for="todate">To</label>
+            </div>
+          </div>
+        </div>
+        <input class="btn btn-warning btn-block mb-4" type="submit" value="REQUEST">
+      </form>
+    </div>
+    <div class="col-md-6 map-display">
+      <button id="bv-46" type="button" class="btn btn-warning btn-floating bv-46 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV46">
+        ...
+      </button>
+      <button id="bv-43" type="button" class="btn btn-warning btn-floating bv-43 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV43">
+        ...
+      </button>
+      <button id="bv-42" type="button" class="btn btn-warning btn-floating bv-42 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV42">
+        ...
+      </button>
+      <button id="bv-41" type="button" class="btn btn-warning btn-floating bv-41 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV41">
+        ...
+      </button>
+      <button id="bv-40" type="button" class="btn btn-warning btn-floating bv-40 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV40">
+        ...
+      </button>
+      <button id="bv-39" type="button" class="btn btn-warning btn-floating bv-39 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV39">
+        ...
+      </button>
+      <button id="bv-37" type="button" class="btn btn-warning btn-floating bv-37 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV37">
+        ...
+      </button>
+      <button id="bv-34" type="button" class="btn btn-warning btn-floating bv-34 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV34">
+        ...
+      </button>
+      <button id="bv-31" type="button" class="btn btn-warning btn-floating bv-31 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV31">
+        ...
+      </button>
+      <button id="bv-25" type="button" class="btn btn-warning btn-floating bv-25 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV25">
+        ...
+      </button>
+      <button id="bv-22B" type="button" class="btn btn-warning btn-floating bv-22B fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV22B">
+        ...
+      </button>
+      <button id="bv-22A" type="button" class="btn btn-warning btn-floating bv-22A fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV22A">
+        ...
+      </button>
+      <button id="bv-20B" type="button" class="btn btn-warning btn-floating bv-20B fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV20B">
+        ...
+      </button>
+      <button id="bv-20A" type="button" class="btn btn-warning btn-floating bv-20A fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV20A">
+        ...
+      </button>
+      <button id="bv-18" type="button" class="btn btn-warning btn-floating bv-18 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV18">
+        ...
+      </button>
+      <button id="bv-16" type="button" class="btn btn-warning btn-floating bv-16 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV16">
+        ...
+      </button>
+      <button id="bv-14" type="button" class="btn btn-warning btn-floating bv-14 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV14">
+        ...
+      </button>
+      <button id="bv-7" type="button" class="btn btn-warning btn-floating bv-7 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV7">
+        ...
+      </button>
+      <button id="bv-5" type="button" class="btn btn-warning btn-floating bv-5 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV5">
+        ...
+      </button>
+      <div
+        class="bg-image map-bg border border-light rounded-4"
+        style="background-image: url({{ url_for('static', filename='maps/pipe.png') }});"
+      >
+        <span class="p-1 bg-light text-black">Cameroon Oil Transportation Company</span>
+      </div>
+    </div>
+    <div class="col-md-2 map-display"></div>
+  </div>
+</div>
+<script type="text/javascript" src="{{ url_for('static', filename='reading/index.js') }}"></script>
+{% endblock %}

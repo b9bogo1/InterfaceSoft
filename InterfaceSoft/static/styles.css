@@ -1,0 +1,147 @@
+html,
+body{
+  width: 100%;
+  height: 100vh;
+  /*overflow: hidden;*/
+  margin: 0;
+}
+body {
+  background: #332D2D;
+  color: white;
+}
+
+.status-box {
+  width: 2rem;
+  height: 2rem;
+}
+
+.reading-box {
+  width: 2.1rem;
+  height: 1.2rem;
+  font-size: 0.7rem;
+  padding: 0 2px;
+  color: black;
+  font-weight: bold;
+}
+.map-display {
+  position:relative;
+}
+.map-bg {
+  background-size: contain;
+  height: 900px;
+  width: 600px;
+}
+.bv-46 {
+  position: absolute;
+  left: 90px;
+  top: 750px;
+  z-index: 1;
+}
+.bv-43 {
+  position: absolute;
+  left: 125px;
+  top: 750px;
+  z-index: 1;
+}
+.bv-42 {
+  position: absolute;
+  left: 160px;
+  top: 745px;
+  z-index: 1;
+}
+.bv-41 {
+  position: absolute;
+  left: 190px;
+  top: 730px;
+  z-index: 1;
+}
+.bv-40 {
+  position: absolute;
+  left: 225px;
+  top: 720px;
+  z-index: 1;
+}
+.bv-39 {
+  position: absolute;
+  left: 250px;
+  top: 700px;
+  z-index: 1;
+}
+.bv-37 {
+  position: absolute;
+  left: 270px;
+  top: 670px;
+  z-index: 1;
+}
+.bv-34 {
+  position: absolute;
+  left: 295px;
+  top: 645px;
+  z-index: 1;
+}
+.bv-31 {
+  position: absolute;
+  left: 325px;
+  top: 630px;
+  z-index: 1;
+}
+.bv-25 {
+  position: absolute;
+  left: 365px;
+  top: 620px;
+  z-index: 1;
+}
+.bv-22B {
+  position: absolute;
+  left: 375px;
+  top: 575px;
+  z-index: 1;
+}
+.bv-22A {
+  position: absolute;
+  left: 385px;
+  top: 525px;
+  z-index: 1;
+}
+.bv-20B {
+  position: absolute;
+  left: 405px;
+  top: 485px;
+  z-index: 1;
+}
+.bv-20A {
+  position: absolute;
+  left: 425px;
+  top: 445px;
+  z-index: 1;
+}
+.bv-18 {
+  position: absolute;
+  left: 430px;
+  top: 405px;
+  z-index: 1;
+}
+.bv-16 {
+  position: absolute;
+  left: 450px;
+  top: 375px;
+  z-index: 1;
+}
+.bv-14 {
+  position: absolute;
+  left: 480px;
+  top: 350px;
+  z-index: 1;
+}
+.bv-7 {
+  position: absolute;
+  left: 520px;
+  top: 340px;
+  z-index: 1;
+}
+.bv-5 {
+  position: absolute;
+  left: 560px;
+  top: 325px;
+  z-index: 1;
+}

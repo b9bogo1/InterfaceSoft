@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+<!--    <link rel="stylesheet" href="{{ url_for('static', filename='MDB5/css/mdb.min.css') }}">-->
+<!--    <script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery-3.6.4.min.js') }}"></script>-->
+    <link rel="stylesheet" href="http://localhost:60501/static/MDB5/css/mdb.min.css">
+    <script type="text/javascript" src="http://localhost:60501/static/jquery/jquery-3.6.4.min.js"></script>
+    <title>Title</title>
+</head>
+<body>
+    <div class="container">
+        <div class="my-2 p-2 border border-dark text-dark bg-secondary">Pipeline Soil Temperature Daily Report</div>
+        <table class="table table-sm table-bordered">
+            <thead>
+            <tr class="table-secondary">
+              <th scope="col">Hostname</th>
+              <th scope="col">Site</th>
+              <th scope="col">Address</th>
+              <th scope="col">Port</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+              <th scope="row">{{ data.node.hostname }}</th>
+              <td>{{ data.node.site }}</td>
+              <td>{{ data.node.ip }}</td>
+              <td>{{ data.node.port }}</td>
+            </tr>
+            </tbody>
+        </table>
+        {% for trans_id, readings in data.readings.items() %}
+        <table class="table table-sm table-bordered">
+            <thead>
+            <tr class="table-dark">
+                <th colspan="4" scope="col">{{ trans_id }}</th>
+            </tr>
+            <tr class="table-secondary">
+                <th scope="col">#</th>
+                <th scope="col">Avg Temp. 1</th>
+                <th scope="col">Avg Temp. 2</th>
+                <th scope="col">Hour</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for reading in readings %}
+            <tr>
+                <th scope="row">{{ loop.index }}</th>
+                <td>{{ reading.average_temp_1 }}</td>
+                <td>{{ reading.average_temp_2 }}</td>
+                <td>{{ reading.reference_hour.strftime('%d/%m/%Y %H:%M:%S') }}</td>
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        {% endfor %}
+
+    </div>
+<!--    <script type="text/javascript" src="{{ url_for('static', filename='MDB5/js/mdb.min.js') }}"></script>-->
+    <script type="text/javascript" src="http://localhost:60501/static/MDB5/js/mdb.min.js"></script>
+</body>
+</html>
