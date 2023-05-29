@@ -2,10 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<!--    <link rel="stylesheet" href="{{ url_for('static', filename='MDB5/css/mdb.min.css') }}">-->
-<!--    <script type="text/javascript" src="{{ url_for('static', filename='jquery/jquery-3.6.4.min.js') }}"></script>-->
-    <link rel="stylesheet" href="http://localhost:60501/static/MDB5/css/mdb.min.css">
-    <script type="text/javascript" src="http://localhost:60501/static/jquery/jquery-3.6.4.min.js"></script>
+    <link rel="stylesheet" href="http://{{ data.node.ip }}:{{ data.node.port }}/static/MDB5/css/mdb.min.css">
+    <script type="text/javascript" src="http://{{ data.node.ip }}:{{ data.node.port }}/static/jquery/jquery-3.6.4.min.js"></script>
     <title>Title</title>
 </head>
 <body>
@@ -56,7 +54,6 @@
         {% endfor %}
 
     </div>
-<!--    <script type="text/javascript" src="{{ url_for('static', filename='MDB5/js/mdb.min.js') }}"></script>-->
-    <script type="text/javascript" src="http://localhost:60501/static/MDB5/js/mdb.min.js"></script>
+    <script type="text/javascript" src="http://{{ data.node.ip }}:{{ data.node.port }}/static/MDB5/js/mdb.min.js"></script>
 </body>
 </html>

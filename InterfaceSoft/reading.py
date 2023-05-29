@@ -2,16 +2,11 @@ from flask import (
     Blueprint, flash, g, redirect, render_template, request, url_for, jsonify, make_response
 )
 import pdfkit
-import pandas as pd
-from werkzeug.exceptions import abort
-import time
 from datetime import datetime, timedelta
-from sqlalchemy import func
 import requests
 import smtplib
 from email.message import EmailMessage
 from InterfaceSoft.auth import login_required
-from InterfaceSoft.app_configs.databases_uri import check_main_db
 from InterfaceSoft import db
 from InterfaceSoft.models import Reading
 from InterfaceSoft.local_configs import get_node, get_outlook_pwd, get_email_address
@@ -31,7 +26,7 @@ SYSTEM_NODES = {key: [] for key in
 
 
 @bp.route('/')
-# @login_required
+@login_required
 def index():
     # Render an HTML template that displays the readings list
     return render_template('reading/index.html')
@@ -40,7 +35,7 @@ def index():
 @bp.route('/pdf')
 def html_to_pdf():
     # filter the Reading table by the created_at value in the last 24 hours
-    readings = Reading.query.filter(Reading.created_at >= datetime.now() - timedelta(hours=82)).all()
+    readings = Reading.query.filter(Reading.created_at >= datetime.now() - timedelta(hours=24)).all()
     hourly_readings = hourly_formating(readings)
     # return a JSON response with the hourly readings and the node name
     data = {"readings": hourly_readings, "node": NODE}
@@ -60,9 +55,10 @@ def html_to_pdf():
     return response
 
 
-@bp.route('/send-email')
+@bp.route('/send-email', methods=["POST"])
 def send_email():
-    receiver = "bernard.bogos@gmail.com"
+    user = request.json  # or data = request.get_json()
+    receiver = user['email']
     # Get the PDF file as a binary response from the Flask route
     # Specify the proxy settings using the proxies argument
     response = requests.get(f"http://{NODE['ip']}:{NODE['port']}/pdf")
@@ -110,41 +106,6 @@ def system_data_update():
     return NODE_IP
 
 
-@bp.route('/save-reading', methods=["POST"])
-def save_reading():
-    reading_to_save = request.json
-    # Create a new Reading object with the sensor data and the requestor data
-    new_reading = Reading(
-        trans_id=reading_to_save["trans_id"],
-        created_at=reading_to_save["created_at"],
-        order_num=reading_to_save["order_num"],
-        requestor_id=reading_to_save["requestor_id"],
-        temp_1=reading_to_save["temp_1"],
-        temp_2=reading_to_save["temp_2"],
-        rtd_1=reading_to_save["rtd_1"],
-        rtd_2=reading_to_save["rtd_2"],
-        is_data_transmitted=reading_to_save["is_data_transmitted"]
-    )
-    # Add the new Reading object to the database session
-    db.session.add(new_reading)
-    # Commit the changes to the database
-    db.session.commit()
-    # Get the latest reading from the database or None if no row is found
-    reading = Reading.query.order_by(Reading.created_at.desc()).first()
-    reading_dict = reading.as_dict()  # convert the Reading object to a dictionary
-    json_object = jsonify(reading_dict)  # convert the dictionary to a JSON object
-    # print(reading_dict['id'])
-    # print(json_object.get_json())
-    return json_object
-
-
-@bp.route('/save-unsaved-readings', methods=["POST"])
-def save_unsaved_readings():
-    unsaved_readings = request.json
-    print(f"Unsaved Readings | {unsaved_readings}")
-    return jsonify(unsaved_readings)
-
-
 @bp.route('/internal-reading-list', methods=['GET'])
 def internal_reading_list():
     # create a subquery to get the maximum created_at value for each trans_id
@@ -160,42 +121,6 @@ def internal_reading_list():
                       local_readings_dict]
     # return a JSON response with the readings list and the node name
     return jsonify({"readings": local_readings, "node": NODE})
-
-
-@bp.route('/handle-non-transmitted-readings/<int:time_range>', methods=['GET'])
-def hdl_non_transmitted_readings(time_range):
-    # # get the current time
-    # now = datetime.now()
-    # # get the time 10 minutes ago
-    # ten_minutes_ago = now - timedelta(minutes=time_range)
-    # # Create an empty list to store the reading dictionaries
-    data = []
-    # # query the Reading table and filter by created_at and is_data_transmitted columns
-    # non_transmitted_readings = db.session.query(Reading) \
-    #     .filter(Reading.created_at >= ten_minutes_ago, Reading.is_data_transmitted == False).all()
-    # # Loop through each reading object
-    # for reading in non_transmitted_readings:
-    #     # Convert the row to a dictionary using the as_dict method
-    #     reading_dict = reading.as_dict()
-    #     # Convert the datetime object to a string using isoformat method with timespec argument
-    #     reading_dict["created_at"] = reading_dict["created_at"].isoformat(timespec="microseconds")
-    #     # Append the reading dictionary to the data list
-    #     data.append(reading_dict)
-    #     # Return a JSON response with the data list
-    return jsonify(data)
-
-
-@bp.route('/get-latest-reading-saved', methods=['GET'])
-def latest_reading_saved():
-    # reading = Reading.query.order_by(Reading.created_at.desc()).first()
-    # if reading is None:
-    #     # Return a 404 Not Found error with a message
-    #     return jsonify({"error": "No reading found"}), 404
-    # reading_dict = reading.as_dict()
-    # # Convert the datetime object to a string using isoformat method
-    # reading_dict["created_at"] = reading_dict["created_at"].isoformat(timespec="microseconds")
-    return jsonify({})
-    # return jsonify(reading_dict)
 
 
 @bp.route('/get-nodes-list', methods=["GET", "POST"])

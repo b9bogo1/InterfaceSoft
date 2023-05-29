@@ -62,8 +62,9 @@ def create_app(test_config=None):
     def page_not_found(error):
         return 'Page not found', 404  # return a custom message and status code for 404 error
 
-    # from InterfaceSoft.manager.runtime import ManageNetworkDataFlow
-    # handle_network_data_flow = ManageNetworkDataFlow()
-    # handle_network_data_flow.start()
-
     return app  # return the app object
+
+
+from InterfaceSoft.manager.runtime import ManageNetworkDataFlow
+handle_network_data_flow = ManageNetworkDataFlow()
+handle_network_data_flow.start()

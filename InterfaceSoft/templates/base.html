@@ -7,7 +7,7 @@
     <nav class="navbar navbar-light navbar-dark bg-dark navbar-expand-md fixed-top">
       <div class="container-sm">
         <a class="navbar-brand" href="#">
-            <span class="fw-bold fs-3 text">InterfaceSoft</span>
+            <span class="fw-bold fs-3">InterfaceSoft</span>
         </a>
         <div class="justify-content-center text-white">
           <div class="fs-2 text">{{ g.nodeName }}</div>
@@ -15,10 +15,10 @@
         <ul class="justify-content-end">
           {% if g.user %}
             <span>{{ g.user['lastname'] }}, {{ g.user['firstname'] }}</span>
-            <a class="btn btn-light ms-3" href="{{ url_for('auth.logout') }}">Log Out</a>
+            <a class="btn btn-danger ms-3" href="{{ url_for('auth.logout') }}">Log Out</a>
           {% else %}
-            <a class="btn btn-light ms-3" href="{{ url_for('auth.register') }}">Register</a>
-            <a class="btn btn-light ms-3" href="{{ url_for('auth.login') }}">Log In</a>
+            <a class="btn btn-warning ms-3" href="{{ url_for('auth.register') }}">Register</a>
+            <a class="btn btn-success ms-3" href="{{ url_for('auth.login') }}">Log In</a>
           {% endif %}
         </ul>
       </div>

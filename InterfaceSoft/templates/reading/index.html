@@ -6,7 +6,7 @@
     <div class="col-md-4">
         <div class="py-1 display-6">Dashboard</div>
       <div class="my-3 fs-5">Request for reading in PDF Format</div>
-      <form method="post">
+      <form id="pdfForm" method="POST">
         <div class="form-outline form-white mb-4">
           <input name="email" type="email" id="email" class="form-control" required/>
           <label class="form-label" for="email">Email address</label>
@@ -14,19 +14,23 @@
         <div class="row mb-4">
           <div class="col">
             <div class="form-outline form-white">
-              <input name="fromdate" type="date" id="fromdate" class="form-control" />
+              <input name="fromdate" type="date" id="fromdate" class="form-control" disabled/>
               <label class="form-label" for="fromdate">From</label>
             </div>
           </div>
           <div class="col">
             <div class="form-outline form-white">
-              <input name="todate" type="date" id="todate" class="form-control" />
+              <input name="todate" type="date" id="todate" class="form-control" disabled/>
               <label class="form-label" for="todate">To</label>
             </div>
           </div>
         </div>
-        <input class="btn btn-warning btn-block mb-4" type="submit" value="REQUEST">
+        <input class="btn btn-warning btn-block mb-4" type="submit" value="SEND BY EMAIL">
       </form>
+      <hr/>
+      <a href="{{ url_for('reading.html_to_pdf') }}" class="btn btn-success btn-block" >
+        DOWNLOAD 24HRS REPORT
+      </a>
     </div>
     <div class="col-md-6 map-display">
       <button id="bv-46" type="button" class="btn btn-warning btn-floating bv-46 fw-bold" data-mdb-ripple-color="dark" data-mdb-toggle="tooltip" data-mdb-placement="top" title="BV46">
@@ -97,4 +101,5 @@
   </div>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='reading/index.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='reading/pdf-form.js') }}"></script>
 {% endblock %}
